@@ -24,5 +24,11 @@ class Subject extends Model
             'view' => 'integer',
         ];
 
+        public function professors()
+        {
+            return $this->belongsToMany(Professor::class);
+        }
+
+
 
 }
