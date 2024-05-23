@@ -10,4 +10,9 @@ class Professor extends Model
     use HasFactory;
 
     protected $fillable = ['department_id', 'major', 'prefix', 'first_name', 'last_name'];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 }
