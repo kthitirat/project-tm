@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreign('professor_id')->references('id')->on('professors')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
 
-
         });
     }
 
@@ -31,4 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('professor_subject');
     }
+
 };
