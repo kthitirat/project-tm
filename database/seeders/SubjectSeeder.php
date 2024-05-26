@@ -30,7 +30,7 @@ class SubjectSeeder extends Seeder
 
         $subjects = Subject::all();
         foreach ($subjects as $subject){
-            $subject->professors()->attach(Professor::inRandomOrder()->first()->id);
+            $subject->professors()->attach(Professor::inRandomOrder()->first()->id);  //attach จับมาคู่กัน professor_subject เป็นไพรเวิร์ดเทเบิ้ล
         }
     }
 }

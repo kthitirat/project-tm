@@ -4,32 +4,18 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AnnouncementController;
+use Laravel\Fortify\Features;
+use App\Http\Controllers\SubjectController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//Route::get('/login', [PageController::class, 'login'])
+//    ->name('login');
+//Route::post('/login', [PageController::class, 'doLogin']);
+if (Features::enabled(Features::registration())) {
+    Route::get('/register', [PageController::class, 'userRegister'])
+        ->name('register');
+    Route::post('/register', [PageController::class, 'storeRegister']);
+}
 
-//Route::get('/', function () {
-//    return Inertia::render('Welcome', [
-//        'canLogin' => Route::has('login'),
-//        'canRegister' => Route::has('register'),
-//        'laravelVersion' => Application::VERSION,
-//        'phpVersion' => PHP_VERSION,
-//    ]);
-//});
 
 Route::get('/', [PageController::class, 'index'])->name('index');
-
-// admin panel
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
-    });
-});
